@@ -1,0 +1,32 @@
+#!/usr/local/bin/node
+var sprites = require('./sprites');
+
+/**
+ * this is mainly (no pun intended) to encapsulate local variables so that we don't pollute global space
+ */
+function main(){
+    var images = [];
+    var sheets = [];
+
+    for (var i = 2; i < process.argv.length; i++){
+        // TODO: validate inputs to be positive integer values
+        var parts = process.argv[i].split('x');
+        var rect = new sprites.Rect(parseInt(parts[0],10),parseInt(parts[1],10));
+        images.push(rect);
+    }
+
+    while(images.length > 0){
+        var sheet = new sprites.Sheet();
+
+        // simply get a list of images that are left
+        var images = sheet.insertImages(images);
+        sheets.push(sheet);
+    }
+
+    sheets.forEach(function(sheet,idx){
+        console.log("\nsheet " + idx);
+        sheet.printSheet();
+    })
+}
+
+main();

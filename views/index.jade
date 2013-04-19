@@ -1,0 +1,21 @@
+extends layout
+
+block body
+  div(ng-controller='AppCtrl')
+    form(name='form',ng-submit="submit()")
+      input(type="text",name="input",ng-model="text",ng-pattern="word",required='true',style='width:960px')
+      input(type='submit',value="Submit")
+
+    svg(ng-repeat='sheet in sheets',width='1026',height='1026')
+      rect(x="0",y="0",width="1024",height="1024",stroke='black',stroke-width="2",fill='white')
+      rect(ng-repeat='image in sheet.rectangles',opacity='.5',
+          x='{{image.x}}',y='{{image.y}}',
+          height='{{image.height}}',width='{{image.width}}',
+          stroke-width='1',stroke='black',
+          fill='green')
+
+  script(src='js/lib/angular/angular.js')
+  script(src='js/app.js')
+  script(src='js/services.js')
+  script(src='js/controllers.js')
+  script(src='js/directives.js')
