@@ -23,7 +23,6 @@
 //sheet 2
 //629x236 0 0
 //
-var _ = require('underscore');
 
 module.exports.Rect = Rect;
 module.exports.Sheet = Sheet;
